@@ -8,6 +8,7 @@ import { changeState } from '../../store/modules/controlStateSlice';
 import { changeName } from '../../store/modules/playingNameSlice';
 import { addValue } from '../../store/modules/musicListSlice';
 import { changeMusicNow } from '../../store/modules/musicNowSlice';
+import usePlaySong from '../../api/fetchSong';
 
 const LeaderBoardItem: React.FC<{data: string}> = (props) => {
     const [musicItem,setMusicItem] = useState<Array<EApopMusicItemType>>([]);
@@ -110,6 +111,7 @@ const LeaderBoardItem: React.FC<{data: string}> = (props) => {
             console.error(error);
           });
       }
+      const handleClick = usePlaySong()
     return (
         <View>
             <Text style={styles.Title}>
@@ -120,7 +122,7 @@ const LeaderBoardItem: React.FC<{data: string}> = (props) => {
                     musicItem.map((item,index)=>{
                         return (
                             <TouchableOpacity onPress={()=>{
-                                playSong(item.id,item.name)
+                                handleClick(item.id,item.name)
                             }} style={styles.list} key={index}>
                                 <View>
                                     <Image style={styles.image} source={{uri: item.picUrl}} alt='图片' />
