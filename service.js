@@ -98,6 +98,8 @@ module.exports = async function() {
 
       addEventListener('remote-next', () => TrackPlayer.skipToNext());
 
+      addEventListener('playback-state', () => console.log("playback-state"))
+
       addEventListener('remote-previous', async (param) => skipToPrevious());
 
       addEventListener('remote-jump-forward', async ({interval}) => {
