@@ -25,10 +25,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Index from './pages/index';
-import TrackPlayer from 'react-native-track-player';
 import PlayControl from './components/playControl';
 import type { RootState } from './store/index.ts'
 import { useSelector, useDispatch } from 'react-redux'
+import RootNavigator from './Router';
 
 const Main: React.FC = () => {
   // 获取屏幕宽度
@@ -60,11 +60,11 @@ const Main: React.FC = () => {
   const controlStateSlice = useSelector((state: RootState) => state.controlStateSlice.value)
   return (
     <View style={styles.global}>
-        <Index></Index>
+        <RootNavigator/>
         {
           controlStateSlice && <PlayControl></PlayControl>
         }
-      </View>
+    </View>
   )
 }
 

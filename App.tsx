@@ -6,7 +6,8 @@
  */
 
 import React, { useEffect } from 'react';
-import type {PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   SafeAreaView,
   ScrollView,
@@ -29,6 +30,7 @@ import TrackPlayer, { usePlaybackState, useTrackPlayerEvents } from 'react-nativ
 import PlayControl from './components/playControl';
 import { store } from './store/index';
 import Main from './main';
+import BottomTabs from './components/bottomTabs';
 
 const App: React.FC = () => {
   // TrackPlayer.setupPlayer().then(() => {
@@ -61,9 +63,12 @@ const App: React.FC = () => {
     },
   });
   return (
-    <Provider store={store}>
-      <Main />
-    </Provider>
+    <NavigationContainer>
+      <Provider store={store}>
+        <Main />
+        <BottomTabs />
+      </Provider>
+    </NavigationContainer>
   )
 }
 

@@ -27,7 +27,7 @@ const IndexMenuItem: React.FC<{data: IndexMenuItemType}> = (props) => {
         }
       });
     return (
-        <View style={styles.IndexMenuItem}>
+        <View style={styles.IndexMenuItem} >
             {/* <Icon name='appstore-add' size="md" color="red" /> */}
             <View style={styles.Image}>
             <Image source={props.data.icon} alt='图标' style={{width: 30,height: 30,marginLeft: 'auto',marginRight: 'auto'}}/>

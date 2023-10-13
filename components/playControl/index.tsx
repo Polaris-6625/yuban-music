@@ -10,7 +10,7 @@ const PlayControl: React.FC = () => {
   const styles = StyleSheet.create({
     container: {
       position: 'absolute',
-      bottom: 1,
+      bottom: 55,
       display: 'flex',
       flexDirection: 'row',
       width: '100%',

@@ -9,13 +9,20 @@
     "start": "react-native start",
     "test": "jest",
     "build": "npx react-native run-android --variant=release",
-    "build-ios":"node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --platform ios --dev false --bundle-output release_ios/main.jsbundle --assets-dest release_ios/"
+    "build-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --platform ios --dev false --bundle-output release_ios/main.jsbundle --assets-dest release_ios/"
   },
   "dependencies": {
     "@ant-design/react-native": "^5.0.4",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^6.1.8",
+    "@react-navigation/native-stack": "^6.9.14",
     "@reduxjs/toolkit": "^1.9.5",
     "react": "18.2.0",
     "react-native": "0.72.4",
+    "react-native-gesture-handler": "^2.13.2",
+    "react-native-reanimated": "^3.5.4",
+    "react-native-safe-area-context": "^4.7.2",
+    "react-native-screens": "^3.25.0",
     "react-native-track-player": "^3.2.0",
     "react-redux": "^8.1.2"
   },
