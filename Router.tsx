@@ -12,8 +12,8 @@ const RootNavigator: React.FC = () => {
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Index} options={{ headerShown: false }} />
             <Stack.Screen name="Procast" component={Procast} options={{ headerShown: false }} />
-            <Stack.Screen name="Follow" component={Follow} options={{ headerShown: false }} />
-            <Stack.Screen name="MyPage" component={MyPage} options={{ headerShown: false }} />
+            <Stack.Screen name="Follow" component={Follow} options={{ headerTitle: "动态",headerBackVisible: false }} />
+            <Stack.Screen name="MyPage" component={MyPage} options={{ headerTitle: "我的",headerBackVisible: false }} />
         </Stack.Navigator>
     )
 }

@@ -1,10 +1,11 @@
 import { Text, View } from "react-native";
 import React from "react"
+import UserLogin from "../../components/userLogin";
 
 const MyPage:React.FC = () => {
     return (
         <View>
-            <Text>我的</Text>
+            <UserLogin/>
         </View>
     )
 }

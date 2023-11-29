@@ -22,7 +22,7 @@ const BqSongList: React.FC = () => {
             paddingHorizontal: 8
         },
         musicItem: {
-            marginBottom: 8,
+            marginBottom: 66,
             marginRight: 6
         }
     })

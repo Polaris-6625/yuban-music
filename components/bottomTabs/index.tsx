@@ -5,7 +5,7 @@ import IndexMenuItem from "../indexMenuItem";
 import { useNavigation } from '@react-navigation/native'
 
 const BottomTabs: React.FC = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
     const styles = StyleSheet.create({
         container: {
             position: 'absolute',
@@ -18,7 +18,7 @@ const BottomTabs: React.FC = () => {
             paddingRight: 20,
             paddingBottom: 0,
             backgroundColor: 'white',
-            gap: 25
+            justifyContent: 'space-between'
         }
     });
     return (
