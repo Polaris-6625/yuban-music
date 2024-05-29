@@ -2,19 +2,15 @@ import React , { useEffect , useState } from 'react';
 import { View, Text, StyleSheet , Image, TouchableOpacity } from 'react-native';
 import { EApopMusicItemType } from '../../types/EApopMusicItem';
 import TrackPlayer, { RepeatMode } from 'react-native-track-player';
-import { clearAll } from '../../utils/clearAllQuery';
-import { useDispatch } from 'react-redux';
-import { changeState } from '../../store/modules/controlStateSlice';
-import { changeName } from '../../store/modules/playingNameSlice';
-import { addValue } from '../../store/modules/musicListSlice';
-import { changeMusicNow } from '../../store/modules/musicNowSlice';
 import usePlaySong from '../../api/fetchSong';
+import { setControlState } from '../../store/controlState';
+import { setCurrentMusic } from '../../store/currentMusic';
+import { setPlayingName } from '../../store/playingName';
 
 const LeaderBoardItem: React.FC<{data: string}> = (props) => {
     const [musicItem,setMusicItem] = useState<Array<EApopMusicItemType>>([]);
     let TempArray:Array<EApopMusicItemType> = [];
     const [bdName,setBdName] = useState<string>('');
-    const dispatch = useDispatch()
     useEffect(()=>{
         fetch(`http://codercba.com:9002/playlist/detail?id=${props.data}`)
             .then(response => response.json())
@@ -73,7 +69,7 @@ const LeaderBoardItem: React.FC<{data: string}> = (props) => {
         }
     })
     async function playSong(id: number,name: string): Promise<void> {
-        dispatch(changeName(name))
+        setPlayingName(name)
         // 暂停播放并清空当前播放队列
         await TrackPlayer.pause();
         //await TrackPlayer.reset();
@@ -95,15 +91,16 @@ const LeaderBoardItem: React.FC<{data: string}> = (props) => {
             }).then(async (result)=>{
                 await TrackPlayer.skipToNext()
                 await TrackPlayer.play();
-                await dispatch(changeState())
+                await setControlState(true);
                 // console.log(TrackPlayer.getTrack(0))
                 TrackPlayer.setRepeatMode(RepeatMode.Queue)
-                dispatch(changeMusicNow({
+                console.log("name is ",name)
+                setCurrentMusic({
                     id,
                     url: `https://music.163.com/song/media/outer/url?id=${data.data[0].id}.mp3`,
                     title: name,
                     artist: '艺术家',
-                }))
+                })
             });
           })
           .catch(error => {

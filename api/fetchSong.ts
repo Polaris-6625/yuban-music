@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
 import TrackPlayer, { RepeatMode } from 'react-native-track-player';
-import { useDispatch } from 'react-redux';
-import { changeState } from '../store/modules/controlStateSlice';
-import { changeName } from '../store/modules/playingNameSlice';
 import React from 'react';
-import { changeMusicNow } from '../store/modules/musicNowSlice';
+import { setControlState } from '../store/controlState';
+import { setCurrentMusic } from '../store/currentMusic';
+import { setPlayingName, usePlayingName } from '../store/playingName';
 
 function usePlaySong() {
-  const dispatch = useDispatch();
-
+  const playingName = usePlayingName()
   async function playSong(id: number,name: string): Promise<void> {
-    dispatch(changeName(name))
+    setPlayingName(name)
+    console.log(name)
+    console.log('playingName',playingName)
     // 暂停播放并清空当前播放队列
     await TrackPlayer.pause();
     //await TrackPlayer.reset();
@@ -32,15 +31,18 @@ function usePlaySong() {
         }).then(async (result)=>{
             await TrackPlayer.skipToNext()
             await TrackPlayer.play();
-            await dispatch(changeState())
+            await setControlState(true)
             // console.log(TrackPlayer.getTrack(0))
             TrackPlayer.setRepeatMode(RepeatMode.Queue)
-            dispatch(changeMusicNow({
-                id,
-                url: `https://music.163.com/song/media/outer/url?id=${data.data[0].id}.mp3`,
-                title: name,
-                artist: '艺术家',
-            }))
+            console.log("name is ",name)
+            setCurrentMusic(
+              {
+                  id,
+                  url: `https://music.163.com/song/media/outer/url?id=${data.data[0].id}.mp3`,
+                  title: name,
+                  artist: '艺术家',
+              }
+            )
         });
       })
       .catch(error => {

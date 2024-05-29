@@ -28,7 +28,6 @@ import {
 import { Provider } from 'react-redux'
 import TrackPlayer, { usePlaybackState, useTrackPlayerEvents } from 'react-native-track-player';
 import PlayControl from './components/playControl';
-import { store } from './store/index';
 import Main from './main';
 import BottomTabs from './components/bottomTabs';
 
@@ -64,10 +63,8 @@ const App: React.FC = () => {
   });
   return (
     <NavigationContainer>
-      <Provider store={store}>
-        <Main />
-        <BottomTabs />
-      </Provider>
+      <Main />
+      <BottomTabs />
     </NavigationContainer>
   )
 }

@@ -17,18 +17,9 @@ import {
   View,
   Text,
 } from 'react-native';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Index from './pages/index';
 import PlayControl from './components/playControl';
-import type { RootState } from './store/index.ts'
-import { useSelector, useDispatch } from 'react-redux'
 import RootNavigator from './Router';
+import { useControlState } from './store/controlState';
 
 const Main: React.FC = () => {
   // 获取屏幕宽度
@@ -57,7 +48,7 @@ const Main: React.FC = () => {
       fontWeight: '700',
     },
   });
-  const controlStateSlice = useSelector((state: RootState) => state.controlStateSlice.value)
+  const controlStateSlice = useControlState()
   return (
     <View style={styles.global}>
         <RootNavigator/>

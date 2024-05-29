@@ -2,14 +2,9 @@ import React from 'react';
 import { View, Image, StyleSheet , Text, TouchableOpacity } from 'react-native';
 import Tag from '@ant-design/react-native/lib/tag'
 import { EApopMusicItemType } from '../../types/EApopMusicItem';
-import TrackPlayer from 'react-native-track-player';
-import { useDispatch } from 'react-redux';
-import { changeName } from '../../store/modules/playingNameSlice';
-import { changeState } from '../../store/modules/controlStateSlice';
-import usePlaySong from '../../api/fetchSong';
+import startPlaySong from '../../api/fetchSong';
 
 const EApopMusicItem: React.FC<{data: EApopMusicItemType}> = (props) => {
-    const dispatch = useDispatch()
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -29,7 +24,7 @@ const EApopMusicItem: React.FC<{data: EApopMusicItemType}> = (props) => {
             justifyContent: 'flex-end'
         }
     })
-    const playSong = usePlaySong()
+    const playSong = startPlaySong()
     return (
         <TouchableOpacity onPress={()=>{
             playSong(props.data.id,props.data.name)

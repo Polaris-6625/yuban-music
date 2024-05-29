@@ -1,14 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MusicItemType } from '../../types/musicItem';
-import { useDispatch } from 'react-redux';
-import { changeState } from '../../store/modules/controlStateSlice';
-import TrackPlayer, { RepeatMode } from 'react-native-track-player';
-import { changeName } from '../../store/modules/playingNameSlice';
-import usePlaySong from '../../api/fetchSong';
+import startPlaySong from '../../api/fetchSong';
 
 const BqSongItem: React.FC<{data: MusicItemType}> = (props) => {
-    const dispatch = useDispatch()
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -25,7 +20,7 @@ const BqSongItem: React.FC<{data: MusicItemType}> = (props) => {
             
         }
     })
-    const playSong = usePlaySong()
+    const playSong = startPlaySong()
     return (
         <TouchableOpacity onPress={()=>{
             playSong(props.data.id,props.data.name);

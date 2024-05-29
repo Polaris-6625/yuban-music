@@ -2,26 +2,24 @@ import React, { useRef, useState } from 'react';
 import { View, StyleSheet , Text } from 'react-native';
 import Button from '@ant-design/react-native/lib/button'
 import TrackPlayer from 'react-native-track-player';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { changeMusicNow } from '../../store/modules/musicNowSlice';
+import { MusicListItemSlice, setCurrentMusic, useCurrentMusic } from '../../store/currentMusic';
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    bottom: 75,
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    paddingLeft: 40,
+    paddingTop: 15,
+    paddingRight: 40,
+    paddingBottom: 15,
+    backgroundColor: 'white'
+  }
+})
 
 const PlayControl: React.FC = () => {
-  const styles = StyleSheet.create({
-    container: {
-      position: 'absolute',
-      bottom: 55,
-      display: 'flex',
-      flexDirection: 'row',
-      width: '100%',
-      paddingLeft: 40,
-      paddingTop: 15,
-      paddingRight: 40,
-      paddingBottom: 15,
-      backgroundColor: 'white'
-    }
-  })
-  const dispatch = useDispatch();
   const isPlaying = useRef(true);
   const [btnValue,setBtnValue] = useState<string>('暂停')
   function play() {
@@ -39,16 +37,16 @@ const PlayControl: React.FC = () => {
     TrackPlayer.getCurrentTrack().then((res:any)=>{
       TrackPlayer.getTrack(res).then((resp)=>{
         console.log(resp)
-        dispatch(changeMusicNow(resp))
+        setCurrentMusic(resp as MusicListItemSlice)
       })
     })
   }
-  //const playingNameSlice = useSelector((state: RootState) => state.playingNameSlice.value)
-  const musicNowSlice = useSelector((state: RootState) => state.musicNowSlice.value)
+  const currentMusic = useCurrentMusic()
+  console.log("currentMusic",currentMusic)
   return (
     <View style={styles.container}>
       <Text>
-        {musicNowSlice.title}
+        {currentMusic?.title}
       </Text>
       <Button onPress={nextMusic} size='small' style={{marginLeft: 12}}>
         下一曲

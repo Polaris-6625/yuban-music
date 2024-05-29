@@ -18,7 +18,8 @@ const BottomTabs: React.FC = () => {
             paddingRight: 20,
             paddingBottom: 0,
             backgroundColor: 'white',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            height: 55
         }
     });
     return (
