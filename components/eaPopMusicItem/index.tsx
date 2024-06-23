@@ -27,6 +27,7 @@ const EApopMusicItem: React.FC<{data: EApopMusicItemType}> = (props) => {
     const playSong = startPlaySong()
     return (
         <TouchableOpacity onPress={()=>{
+            console.log('props',props.data);
             playSong(props.data.id,props.data.name)
         }} style={styles.container}>
             <Image source={{uri: props.data.picUrl}} alt='歌曲图片' style={{width: 100,height: 100}}/>

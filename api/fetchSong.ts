@@ -1,7 +1,7 @@
 import TrackPlayer, { RepeatMode } from 'react-native-track-player';
 import React from 'react';
 import { setControlState } from '../store/controlState';
-import { setCurrentMusic } from '../store/currentMusic';
+import { getCurrentMusic, setCurrentMusic } from '../store/currentMusic';
 import { setPlayingName, usePlayingName } from '../store/playingName';
 
 function usePlaySong() {
@@ -35,6 +35,8 @@ function usePlaySong() {
             // console.log(TrackPlayer.getTrack(0))
             TrackPlayer.setRepeatMode(RepeatMode.Queue)
             console.log("name is ",name)
+            console.log("___data___")
+            console.log(id,name)
             setCurrentMusic(
               {
                   id,
@@ -43,6 +45,7 @@ function usePlaySong() {
                   artist: '艺术家',
               }
             )
+            console.log("currentMusic",getCurrentMusic())
         });
       })
       .catch(error => {

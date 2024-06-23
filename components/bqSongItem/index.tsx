@@ -23,6 +23,7 @@ const BqSongItem: React.FC<{data: MusicItemType}> = (props) => {
     const playSong = startPlaySong()
     return (
         <TouchableOpacity onPress={()=>{
+            console.log('props',props.data);
             playSong(props.data.id,props.data.name);
         }} style={styles.container}>
             <Image source={{uri:props.data.coverImgUrl}} alt='歌曲图片' style={styles.Image}/>

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { View, StyleSheet , Text } from 'react-native';
 import Button from '@ant-design/react-native/lib/button'
 import TrackPlayer from 'react-native-track-player';
-import { MusicListItemSlice, setCurrentMusic, useCurrentMusic } from '../../store/currentMusic';
+import { MusicListItemSlice, getCurrentMusic, setCurrentMusic, useCurrentMusic } from '../../store/currentMusic';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const PlayControl: React.FC = () => {
+function PlayControl ()  {
   const isPlaying = useRef(true);
   const [btnValue,setBtnValue] = useState<string>('暂停')
   function play() {
@@ -38,11 +38,12 @@ const PlayControl: React.FC = () => {
       TrackPlayer.getTrack(res).then((resp)=>{
         console.log(resp)
         setCurrentMusic(resp as MusicListItemSlice)
+        console.log("current",getCurrentMusic())
       })
     })
   }
   const currentMusic = useCurrentMusic()
-  console.log("currentMusic",currentMusic)
+  console.log("currentMusic-main",currentMusic)
   return (
     <View style={styles.container}>
       <Text>
@@ -58,4 +59,4 @@ const PlayControl: React.FC = () => {
   )
 }
 
-export default React.memo(PlayControl);
+export default PlayControl;

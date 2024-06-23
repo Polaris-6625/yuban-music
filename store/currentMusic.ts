@@ -18,4 +18,6 @@ const currentMusicStore = createMapperHooksStore<MusicListItemSlice>(
 
 export const useCurrentMusic = currentMusicStore.useStoreValue
 
+export const getCurrentMusic = currentMusicStore.getStoreValue
+
 export const setCurrentMusic = currentMusicStore.setStoreValue

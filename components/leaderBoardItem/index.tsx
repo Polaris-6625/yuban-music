@@ -95,10 +95,12 @@ const LeaderBoardItem: React.FC<{data: string}> = (props) => {
                 // console.log(TrackPlayer.getTrack(0))
                 TrackPlayer.setRepeatMode(RepeatMode.Queue)
                 console.log("name is ",name)
+                console.log("---data---")
+                console.log('data',data)
                 setCurrentMusic({
-                    id,
+                    id: data.data[0].id,
                     url: `https://music.163.com/song/media/outer/url?id=${data.data[0].id}.mp3`,
-                    title: name,
+                    title: data.data[0].name,
                     artist: '艺术家',
                 })
             });
